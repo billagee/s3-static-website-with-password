@@ -19,3 +19,12 @@ Unlike hosting a site directly from S3, this has the advantage of:
 1. Create the stack in the `us-east-1` region (for now, it has to be, but it hardly matters
    because the content all comes via CloudFront anyhow)
 
+## To add a sigal gallery directory
+
+    mkdir -p pictures/2018/07
+    # Copy your photos/videos to that dir
+    sigal build
+    # Test gallery on http://localhost:8000
+    sigal serve
+    # Recursively upload contents of _build dir to gallery bucket
+    aws s3 cp _build s3://s3-gallery-contentbucket-f00/ --recursive --dryrun
